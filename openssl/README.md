@@ -24,13 +24,9 @@
 	$dataArray = str_split($data, 117);
 
 	foreach($dataArray as $subData){
-
 		$subEncrypted = null;
-		
-		openssl_private_encrypt($subData, $subEncrypted, $pri_key);
-		
+		openssl_private_encrypt($subData, $subEncrypted, $pub_key);
 		$encrypted[] = $subEncrypted;
-		
 	}
 
 	$encrypted = implode('', $encrypted);
@@ -44,13 +40,9 @@
 	$dataArray = str_split($data, 128);
 
 	foreach($dataArray as $subData){
-
 		$subDecrypted = null;
-		
 		openssl_private_decrypt($subData, $subDecrypted, $pri_key); //公钥加密的内容通过私钥解密出来
-		
 		$decrypted[] = $subDecrypted;
-		
 	}
 
 	$decrypted = implode('', $decrypted);
